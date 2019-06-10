@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         buildRetrofitService();
         loadMore(1);
         linearLayoutManager = (LinearLayoutManager) list.getLayoutManager();
+        //Added scroll listener for recycler view
         list.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    // fetching data using retrofit
     private void buildRetrofitService() {
         Interceptor headerInterceptor = new Interceptor() {
             @Override
@@ -106,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
         mAPIService = retrofit.create(NetworkAPIService.class);
     }
+    //To set total items count as a title
     private void setTitle() {
         if (searchItem != null) {
             toolbar.setTitle("Total Items: " + hits.size());
         }
     }
-
     private void loadMore(int number) {
         disableScroll = true;
         mAPIService.getPosts(number)

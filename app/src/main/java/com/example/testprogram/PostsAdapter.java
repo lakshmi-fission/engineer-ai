@@ -57,6 +57,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         }
     }
+    //To set itemList data
     public void setHits(ArrayList<Hit> hits){
         itemList = hits;
     }
